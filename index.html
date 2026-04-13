@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kevin Barrazueta | Full Stack Developer</title>
+  <meta name="description" content="Ingeniero en Ciencias de la Computación y Full Stack Developer especializado en Web & Mobile. Loja, Ecuador."/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+
+  <style>
+    :root {
+      --bg:        #0a0a0f;
+      --bg2:       #0f0f1a;
+      --card:      #12121f;
+      --card-h:    #1a1a2e;
+      --cyan:      #00d4ff;
+      --purple:    #7c3aed;
+      --pink:      #ec4899;
+      --green:     #10b981;
+      --grad:      linear-gradient(135deg,#00d4ff,#7c3aed,#ec4899);
+      --txt:       #f0f0ff;
+      --txt2:      #8892b0;
+      --muted:     #4a5568;
+      --border:    rgba(255,255,255,0.07);
+      --glow-c:    0 0 40px rgba(0,212,255,.25);
+      --glow-p:    0 0 40px rgba(124,58,237,.25);
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.6}
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--bg)}
+    ::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px}
+
+    /* Canvas */
+    #cv{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+    /* Orbs */
+    .orb{position:fixed;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:0}
+    .o1{width:600px;height:600px;top:-200px;left:-200px;background:rgba(0,212,255,.05)}
+    .o2{width:500px;height:500px;bottom:5%;right:-150px;background:rgba(124,58,237,.07)}
+    .o3{width:350px;height:350px;top:50%;left:35%;background:rgba(236,72,153,.04)}
+
+    /* Nav */
+    nav{position:fixed;top:0;width:100%;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;z-index:100;background:rgba(10,10,15,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:padding .3s}
+    .logo{font-family:'Fira Code',monospace;font-size:1.1rem;font-weight:600;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .nav-links{display:flex;gap:1.6rem;list-style:none}
+    .nav-links a{color:var(--txt2);text-decoration:none;font-size:.85rem;font-weight:500;transition:color .3s;letter-spacing:.04em}
+    .nav-links a:hover{color:var(--cyan)}
+    .nav-cta{display:flex;gap:.7rem;align-items:center}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:.45rem;padding:.75rem 1.6rem;border-radius:50px;font-size:.9rem;font-weight:600;text-decoration:none;transition:all .3s;cursor:pointer;border:none}
+    .btn-primary{background:var(--grad);color:#fff;box-shadow:0 0 25px rgba(0,212,255,.25)}
+    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 0 45px rgba(0,212,255,.45)}
+    .btn-outline{background:transparent;color:var(--txt);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(10px)}
+    .btn-outline:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px);box-shadow:var(--glow-c)}
+    .btn-sm{padding:.55rem 1.2rem;font-size:.8rem}
+    .btn-green{background:linear-gradient(135deg,#059669,#10b981);color:#fff;box-shadow:0 0 20px rgba(16,185,129,.2)}
+    .btn-green:hover{transform:translateY(-3px);box-shadow:0 0 40px rgba(16,185,129,.4)}
+
+    /* Hero */
+    #hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;z-index:1}
+    .hero-content{max-width:920px}
+    .hero-greeting{font-family:'Fira Code',monospace;font-size:1.05rem;color:var(--cyan);margin-bottom:.9rem;opacity:0;animation:fdD .8s ease .3s forwards}
+    .hero-name{font-size:clamp(3rem,8vw,5.8rem);font-weight:900;line-height:1.05;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;opacity:0;animation:fdU .8s ease .5s forwards}
+    .hero-title{font-size:clamp(1rem,2.5vw,1.35rem);color:var(--txt2);margin:1.1rem 0 .4rem;font-weight:400;opacity:0;animation:fdU .8s ease .7s forwards}
+    .hero-loc{font-family:'Fira Code',monospace;font-size:.9rem;color:var(--muted);margin-bottom:1.5rem;opacity:0;animation:fdU .8s ease .8s forwards}
+    .hero-typed{font-family:'Fira Code',monospace;font-size:clamp(.9rem,2vw,1.1rem);color:var(--cyan);margin-bottom:2.2rem;min-height:1.8em;opacity:0;animation:fdU .8s ease .9s forwards}
+    .cursor{animation:blink 1s infinite;color:var(--pink)}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+    .hero-btns{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:fdU .8s ease 1.1s forwards}
+    .hero-scroll{position:absolute;bottom:1.8rem;left:50%;transform:translateX(-50%);animation:bounce 2s infinite;color:var(--muted);font-size:1.4rem;text-decoration:none}
+    @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+    @keyframes fdD{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fdU{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Sections */
+    section{position:relative;z-index:1;padding:5.5rem 2rem}
+    .container{max-width:1100px;margin:0 auto}
+    .section-label{font-family:'Fira Code',monospace;font-size:.82rem;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.4rem}
+    .section-title{font-size:clamp(1.8rem,4.5vw,2.6rem);font-weight:800;margin-bottom:.8rem;background:linear-gradient(135deg,#fff 0%,var(--txt2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .section-bar{width:55px;height:4px;background:var(--grad);border-radius:2px;margin-bottom:2.8rem}
+
+    /* About */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+    .about-text p{color:var(--txt2);margin-bottom:1.1rem;font-size:1rem;line-height:1.8}
+    .about-text strong{color:var(--cyan)}
+    .about-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem}
+    .stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+    .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;text-align:center;transition:all .3s}
+    .stat-card:hover{border-color:var(--cyan);box-shadow:var(--glow-c);transform:translateY(-4px)}
+    .stat-n{font-size:2.2rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .stat-l{font-size:.8rem;color:var(--muted);margin-top:.25rem}
+
+    /* Experience */
+    #experience{background:var(--bg2)}
+    .timeline{position:relative;padding-left:2rem}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--cyan),var(--purple),transparent)}
+    .tl-item{position:relative;margin-bottom:2.2rem;padding-left:1.8rem}
+    .tl-dot{position:absolute;left:-2.45rem;top:.35rem;width:14px;height:14px;border-radius:50%;background:var(--grad);box-shadow:0 0 12px rgba(0,212,255,.5)}
+    .tl-period{font-family:'Fira Code',monospace;font-size:.78rem;color:var(--cyan);margin-bottom:.3rem}
+    .tl-role{font-size:1.05rem;font-weight:700;color:var(--txt)}
+    .tl-company{font-size:.9rem;color:var(--txt2);margin-bottom:.6rem}
+    .tl-points{list-style:none;padding:0}
+    .tl-points li{color:var(--txt2);font-size:.88rem;line-height:1.6;padding:.15rem 0 .15rem 1rem;position:relative}
+    .tl-points li::before{content:'▸';position:absolute;left:0;color:var(--cyan)}
+
+    /* Skills */
+    .skills-cats{display:flex;flex-direction:column;gap:2.2rem}
+    .skill-cat-title{font-size:.82rem;font-weight:700;color:var(--txt2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+    .skill-cat-title::after{content:'';flex:1;height:1px;background:var(--border)}
+    .skills-row{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+    .skill-pill{display:flex;align-items:center;gap:.5rem;padding:.5rem 1rem;border-radius:50px;background:var(--card);border:1px solid var(--border);font-size:.82rem;color:var(--txt2);font-weight:500;transition:all .3s;cursor:default}
+    .skill-pill:hover{border-color:var(--purple);color:var(--txt);box-shadow:var(--glow-p);transform:translateY(-3px)}
+    .skill-pill img,.skill-pill i{width:18px;height:18px;font-size:1rem}
+
+    /* Projects */
+    #projects{background:var(--bg2)}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.6rem}
+    .proj-card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.8rem;transition:all .4s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+    .proj-card::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .4s;border-radius:18px}
+    .proj-card:hover{border-color:transparent;transform:translateY(-7px);box-shadow:0 18px 55px rgba(0,212,255,.12)}
+    .proj-card:hover::before{opacity:.05}
+    .proj-card>*{position:relative;z-index:1}
+    .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem}
+    .proj-emoji{font-size:2.2rem}
+    .proj-period{font-family:'Fira Code',monospace;font-size:.72rem;color:var(--muted)}
+    .proj-title{font-size:1.1rem;font-weight:700;color:var(--txt);margin-bottom:.5rem}
+    .proj-subtitle{font-size:.8rem;color:var(--purple);font-weight:600;margin-bottom:.8rem}
+    .proj-desc{color:var(--txt2);font-size:.88rem;line-height:1.7;margin-bottom:1.3rem;flex:1}
+    .proj-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.3rem}
+    .tag{padding:.2rem .65rem;border-radius:50px;font-size:.72rem;font-weight:600;background:rgba(0,212,255,.08);color:var(--cyan);border:1px solid rgba(0,212,255,.18)}
+    .tag.purple{background:rgba(124,58,237,.08);color:#a78bfa;border-color:rgba(124,58,237,.2)}
+    .tag.green{background:rgba(16,185,129,.08);color:#6ee7b7;border-color:rgba(16,185,129,.2)}
+    .proj-links{display:flex;gap:1rem;margin-top:auto}
+    .proj-link{display:inline-flex;align-items:center;gap:.35rem;color:var(--txt2);text-decoration:none;font-size:.82rem;font-weight:500;transition:color .3s}
+    .proj-link:hover{color:var(--cyan)}
+
+    /* Certifications */
+    .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.4rem}
+    .cert-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;display:flex;gap:1.2rem;align-items:flex-start;transition:all .3s}
+    .cert-card:hover{border-color:var(--cyan);box-shadow:var(--glow-c);transform:translateY(-4px)}
+    .cert-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+    .cert-icon.cisco{background:rgba(27,160,215,.1);color:#1BA0D7}
+    .cert-icon.skilt{background:rgba(255,87,34,.1);color:#FF5722}
+    .cert-body{}
+    .cert-title{font-size:.95rem;font-weight:700;color:var(--txt);margin-bottom:.25rem}
+    .cert-issuer{font-size:.8rem;color:var(--txt2)}
+    .cert-year{font-family:'Fira Code',monospace;font-size:.75rem;color:var(--cyan);margin-top:.3rem}
+
+    /* Contact */
+    #contact{background:var(--bg2)}
+    .contact-wrap{max-width:680px;margin:0 auto;text-align:center}
+    .contact-intro{font-size:1rem;color:var(--txt2);margin-bottom:2.5rem;line-height:1.8}
+    .contact-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:2.5rem}
+    .cc{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.3rem;text-decoration:none;transition:all .3s;display:flex;flex-direction:column;align-items:center;gap:.5rem}
+    .cc:hover{border-color:var(--cyan);box-shadow:var(--glow-c);transform:translateY(-4px)}
+    .cc i{font-size:1.6rem}
+    .cc span{font-size:.8rem;color:var(--txt2);font-weight:500}
+    .cc.li i{color:#0077b5}
+    .cc.gh i{color:#f0f6fc}
+    .cc.gm i{color:#EA4335}
+    .cc.web i{color:var(--pink)}
+
+    /* Footer */
+    footer{position:relative;z-index:1;text-align:center;padding:1.8rem;border-top:1px solid var(--border);color:var(--muted);font-size:.82rem}
+    footer span{color:var(--pink)}
+
+    /* Responsive */
+    @media(max-width:768px){
+      .about-grid{grid-template-columns:1fr;gap:2rem}
+      .nav-links{display:none}
+      .hero-btns{flex-direction:column;align-items:center}
+      .nav-cta .btn-outline{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="orb o1"></div>
+  <div class="orb o2"></div>
+  <div class="orb o3"></div>
+  <canvas id="cv"></canvas>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="logo">&lt;0KevinB /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-outline btn-sm">
+        <i class="fas fa-download"></i> CV
+      </a>
+      <a href="https://www.linkedin.com/in/kevin-barrazueta" class="btn btn-primary btn-sm" target="_blank">
+        <i class="fab fa-linkedin"></i> Let's Talk
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting">👋 &nbsp;Hola, soy</p>
+      <h1 class="hero-name">Kevin Barrazueta</h1>
+      <p class="hero-title">Ingeniero en Ciencias de la Computación &nbsp;·&nbsp; Full Stack Developer</p>
+      <p class="hero-loc"><i class="fas fa-map-marker-alt" style="color:var(--pink)"></i> &nbsp;Loja, Ecuador 🇪🇨</p>
+      <p class="hero-typed" id="typed"></p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">
+          <i class="fas fa-rocket"></i> Ver mis proyectos
+        </a>
+        <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green">
+          <i class="fas fa-file-arrow-down"></i> Descargar CV
+        </a>
+        <a href="https://github.com/0KevinB" class="btn btn-outline" target="_blank">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+    <a href="#about" class="hero-scroll"><i class="fas fa-chevron-down"></i></a>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div data-aos="fade-up">
+        <p class="section-label">// quién soy</p>
+        <h2 class="section-title">About Me</h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text" data-aos="fade-right" data-aos-delay="100">
+          <p>Soy un <strong>Ingeniero en Ciencias de la Computación</strong> con experiencia práctica en desarrollo web y móvil <strong>full stack</strong>. Me especializo en construir productos completos: desde el diseño hasta el despliegue.</p>
+          <p>He trabajado en sectores de <strong>salud, educación, transporte y entretenimiento</strong>, creando soluciones reales con React, Angular, Next.js, React Native, Flutter, Supabase y más.</p>
+          <p>Me mueve construir cosas que <strong>impacten vidas reales</strong>, con código limpio, buenas prácticas y trabajo en equipo. Actualmente terminando mi carrera en <strong>UTPL (2021–2026)</strong>.</p>
+          <div class="about-actions">
+            <a href="https://www.linkedin.com/in/kevin-barrazueta" class="btn btn-primary" target="_blank">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green">
+              <i class="fas fa-file-arrow-down"></i> Descargar CV
+            </a>
+          </div>
+        </div>
+        <div class="stats-grid" data-aos="fade-left" data-aos-delay="200">
+          <div class="stat-card">
+            <div class="stat-n">6+</div>
+            <div class="stat-l">Proyectos Destacados</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n">29+</div>
+            <div class="stat-l">Repositorios</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n">3</div>
+            <div class="stat-l">Certificaciones</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-n">🇪🇨</div>
+            <div class="stat-l">Loja, Ecuador</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div data-aos="fade-up">
+        <p class="section-label">// trayectoria</p>
+        <h2 class="section-title">Experience</h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="100">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Sep 2025 — May 2026</div>
+          <div class="tl-role">Full Stack Developer</div>
+          <div class="tl-company">🏥 MediHelp &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Juan Carlos Cabrera</span></div>
+          <ul class="tl-points">
+            <li>Desarrollé la app web y móvil para pacientes y médicos con Next.js, React Native y Supabase.</li>
+            <li>Implementé gestión de historial clínico, agenda de citas, recordatorios y subida de exámenes.</li>
+            <li>Construí canal de mensajería en tiempo real entre pacientes y doctores.</li>
+            <li>Desarrollé panel médico completo: agenda, fichas de pacientes y gestión de consultas.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="150">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Enero 2025</div>
+          <div class="tl-role">Full Stack Developer</div>
+          <div class="tl-company">🎮 Aprendizaje Basado en Juegos &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Stalyn Tapia</span></div>
+          <ul class="tl-points">
+            <li>Plataforma educativa web con minijuegos interactivos sobre los imperios de la Edad Antigua.</li>
+            <li>Diseñé la experiencia gamificada: progresión de niveles, puntuaciones y retroalimentación inmediata.</li>
+            <li>Stack: Next.js, JavaScript y Firebase.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="200">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Sep — Oct 2024</div>
+          <div class="tl-role">Full Stack Developer</div>
+          <div class="tl-company">💚 QR Refugio &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Stalyn Tapia</span></div>
+          <ul class="tl-points">
+            <li>Plataforma de acompañamiento emocional para adolescentes con React Native y Firebase.</li>
+            <li>Permite crear y seguir cursos, cargar lecturas y artículos.</li>
+            <li>Implementé flujos de registro y seguimiento de casos en tiempo real.</li>
+          </ul>
+        </div>
+
+        <div class="tl-item" data-aos="fade-up" data-aos-delay="250">
+          <div class="tl-dot"></div>
+          <div class="tl-period">Mar — Ago 2023</div>
+          <div class="tl-role">Atención al Cliente</div>
+          <div class="tl-company">🏪 DK Store &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Jimmy Jumbo</span></div>
+          <ul class="tl-points">
+            <li>Atención directa al cliente y gestión de servicios en entorno comercial de ritmo acelerado.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div data-aos="fade-up">
+        <p class="section-label">// herramientas</p>
+        <h2 class="section-title">Tech Stack</h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="skills-cats">
+
+        <div data-aos="fade-up" data-aos-delay="80">
+          <div class="skill-cat-title"><i class="fas fa-desktop" style="color:var(--cyan)"></i> Frontend & Mobile</div>
+          <div class="skills-row">
+            <div class="skill-pill"><i class="fab fa-react" style="color:#61DAFB"></i> React</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" alt="Angular"/> Angular</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" style="filter:invert(1)"/> Next.js</div>
+            <div class="skill-pill"><i class="fab fa-react" style="color:#00d8ff"></i> React Native</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter"/> Flutter</div>
+            <div class="skill-pill"><i class="fab fa-html5" style="color:#E34F26"></i> HTML</div>
+            <div class="skill-pill"><i class="fab fa-css3-alt" style="color:#1572B6"></i> CSS</div>
+            <div class="skill-pill"><img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="Tailwind"/> Tailwind</div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="130">
+          <div class="skill-cat-title"><i class="fas fa-code" style="color:var(--purple)"></i> Languages</div>
+          <div class="skills-row">
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TS"/> TypeScript</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JS"/> JavaScript</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" alt="Dart"/> Dart</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/> Java</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/> Python</div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="180">
+          <div class="skill-cat-title"><i class="fas fa-server" style="color:var(--green)"></i> Backend & Databases</div>
+          <div class="skills-row">
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"/> Node.js</div>
+            <div class="skill-pill"><i class="fas fa-plug" style="color:#ccc"></i> REST APIs</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase"/> Supabase</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="Firebase"/> Firebase</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"/> PostgreSQL</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/> MySQL</div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="230">
+          <div class="skill-cat-title"><i class="fas fa-tools" style="color:var(--pink)"></i> DevOps & Tools</div>
+          <div class="skills-row">
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/> Git</div>
+            <div class="skill-pill"><i class="fab fa-github"></i> GitHub</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/> Docker</div>
+            <div class="skill-pill"><i class="fas fa-infinity" style="color:var(--cyan)"></i> CI/CD</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg" alt="Android Studio"/> Android Studio</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma"/> Figma</div>
+            <div class="skill-pill"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/notion/notion-original.svg" alt="Notion" style="filter:invert(1)"/> Notion</div>
+          </div>
+        </div>
+
+        <div data-aos="fade-up" data-aos-delay="280">
+          <div class="skill-cat-title"><i class="fas fa-robot" style="color:#f59e0b"></i> AI & Productivity</div>
+          <div class="skills-row">
+            <div class="skill-pill"><i class="fab fa-github" style="color:#f0f6fc"></i> GitHub Copilot</div>
+            <div class="skill-pill"><i class="fas fa-wand-magic-sparkles" style="color:#D97757"></i> Claude</div>
+            <div class="skill-pill"><i class="fas fa-comment-dots" style="color:#74aa9c"></i> ChatGPT</div>
+            <div class="skill-pill"><i class="fas fa-terminal" style="color:var(--cyan)"></i> Cursor</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div data-aos="fade-up">
+        <p class="section-label">// lo que he construido</p>
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="projects-grid">
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="proj-top">
+            <span class="proj-emoji">🏥</span>
+            <span class="proj-period">2025 – 2026</span>
+          </div>
+          <div class="proj-title">MediHelp</div>
+          <div class="proj-subtitle">Sistema Integral de Salud</div>
+          <p class="proj-desc">Plataforma completa para pacientes y médicos: historial clínico, agenda de citas, recordatorios de medicamentos, mensajería en tiempo real y módulo médico con gestión de consultas. Arquitectura full stack con auth segura y notificaciones push.</p>
+          <div class="proj-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">React Native</span>
+            <span class="tag green">Supabase</span>
+            <span class="tag">TypeScript</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://medihelp.lat" class="proj-link" target="_blank"><i class="fas fa-external-link-alt"></i> medihelp.lat</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Código</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="130">
+          <div class="proj-top">
+            <span class="proj-emoji">🚍</span>
+            <span class="proj-period">2024 – 2025</span>
+          </div>
+          <div class="proj-title">TransiLoja</div>
+          <div class="proj-subtitle">App de Transporte Público · Tesis de Grado</div>
+          <p class="proj-desc">Prototipo de app móvil para el sistema de transporte urbano de Loja. Integra estándares GTFS, geolocalización en tiempo real e interfaz diferenciada para pasajeros y operadores. Pruebas de usabilidad con usuarios reales.</p>
+          <div class="proj-tags">
+            <span class="tag">React Native</span>
+            <span class="tag">Expo</span>
+            <span class="tag">Cloud Firestore</span>
+            <span class="tag">Next.js</span>
+            <span class="tag purple">GTFS</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="180">
+          <div class="proj-top">
+            <span class="proj-emoji">🎨</span>
+            <span class="proj-period">2024 – 2025</span>
+          </div>
+          <div class="proj-title">LatinoXYZ</div>
+          <div class="proj-subtitle">Red Social para Artistas Latinos</div>
+          <p class="proj-desc">Plataforma estilo red social donde artistas latinos publican contenido, se publicitan y generan ventas. Desarrollé feeds, perfiles de artistas, sistema de publicaciones y módulo de comercialización.</p>
+          <div class="proj-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">Tailwind CSS</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="230">
+          <div class="proj-top">
+            <span class="proj-emoji">🎮</span>
+            <span class="proj-period">Enero 2025</span>
+          </div>
+          <div class="proj-title">Aprendizaje Basado en Juegos</div>
+          <div class="proj-subtitle">Plataforma Educativa Gamificada</div>
+          <p class="proj-desc">Plataforma educativa web con minijuegos interactivos (sopa de letras, quiz, videos) sobre los imperios de la Edad Antigua. Progresión de niveles, puntuaciones y retroalimentación inmediata para estudiantes de primaria.</p>
+          <div class="proj-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">JavaScript</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="280">
+          <div class="proj-top">
+            <span class="proj-emoji">📱</span>
+            <span class="proj-period">2024 – 2025</span>
+          </div>
+          <div class="proj-title">App Móvil con Flutter</div>
+          <div class="proj-subtitle">Aplicación Multiplataforma Android/iOS</div>
+          <p class="proj-desc">Desarrollo de aplicación móvil multiplataforma con Flutter y Dart. Integración con Firebase para autenticación, base de datos en tiempo real y almacenamiento cloud.</p>
+          <div class="proj-tags">
+            <span class="tag purple">Flutter</span>
+            <span class="tag purple">Dart</span>
+            <span class="tag">Firebase</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+          </div>
+        </div>
+
+        <div class="proj-card" data-aos="fade-up" data-aos-delay="330">
+          <div class="proj-top">
+            <span class="proj-emoji">💱</span>
+            <span class="proj-period">Ene – Feb 2024</span>
+          </div>
+          <div class="proj-title">New Wave Forex</div>
+          <div class="proj-subtitle">Automatización de Inscripciones</div>
+          <p class="proj-desc">Proyecto universitario (UTPL): automatización del flujo de ingreso de nuevos estudiantes a la plataforma de New Wave Forex. Frontend y backend con validaciones, notificaciones automáticas y panel de administración.</p>
+          <div class="proj-tags">
+            <span class="tag">Next.js</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">TypeScript</span>
+          </div>
+          <div class="proj-links">
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="container">
+      <div data-aos="fade-up">
+        <p class="section-label">// logros</p>
+        <h2 class="section-title">Certifications</h2>
+        <div class="section-bar"></div>
+      </div>
+      <div class="certs-grid">
+
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="80">
+          <div class="cert-icon cisco"><i class="fas fa-network-wired"></i></div>
+          <div class="cert-body">
+            <div class="cert-title">CCNA: Introducción a Redes</div>
+            <div class="cert-issuer">Cisco Networking Academy</div>
+            <div class="cert-year">2024</div>
+          </div>
+        </div>
+
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="150">
+          <div class="cert-icon cisco"><i class="fas fa-wifi"></i></div>
+          <div class="cert-body">
+            <div class="cert-title">CCNA: Switching & Wireless Essentials</div>
+            <div class="cert-issuer">Cisco Networking Academy</div>
+            <div class="cert-year">2025</div>
+          </div>
+        </div>
+
+        <div class="cert-card" data-aos="fade-up" data-aos-delay="220">
+          <div class="cert-icon skilt"><i class="fas fa-layer-group"></i></div>
+          <div class="cert-body">
+            <div class="cert-title">Bootcamp Full Stack</div>
+            <div class="cert-issuer">skilt</div>
+            <div class="cert-year">2025</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div data-aos="fade-up" style="text-align:center">
+        <p class="section-label">// hablemos</p>
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-bar" style="margin:0 auto 2.5rem"></div>
+      </div>
+      <div class="contact-wrap">
+        <p class="contact-intro" data-aos="fade-up" data-aos-delay="80">
+          Estoy abierto a proyectos interesantes, colaboraciones o simplemente una buena conversación tech. Si tienes una idea o quieres trabajar juntos, ¡escríbeme!
+        </p>
+        <div class="contact-cards" data-aos="fade-up" data-aos-delay="160">
+          <a href="https://www.linkedin.com/in/kevin-barrazueta" class="cc li" target="_blank">
+            <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+          </a>
+          <a href="https://github.com/0KevinB" class="cc gh" target="_blank">
+            <i class="fab fa-github"></i><span>GitHub</span>
+          </a>
+          <a href="mailto:kevin010803abq@gmail.com" class="cc gm">
+            <i class="fab fa-google"></i><span>Gmail</span>
+          </a>
+          <a href="https://medihelp.lat" class="cc web" target="_blank">
+            <i class="fas fa-globe"></i><span>MediHelp</span>
+          </a>
+        </div>
+        <div data-aos="fade-up" data-aos-delay="240" style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+          <a href="mailto:kevin010803abq@gmail.com" class="btn btn-primary" style="font-size:1rem;padding:.9rem 2.2rem">
+            <i class="fas fa-paper-plane"></i> Enviar mensaje
+          </a>
+          <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green" style="font-size:1rem;padding:.9rem 2.2rem">
+            <i class="fas fa-file-arrow-down"></i> Descargar CV
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Diseñado & construido con <span>♥</span> por Kevin Barrazueta &nbsp;·&nbsp; Loja, Ecuador 🇪🇨 &nbsp;·&nbsp; <a href="mailto:kevin010803abq@gmail.com" style="color:var(--cyan);text-decoration:none">kevin010803abq@gmail.com</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 650, once: true, offset: 70 });
+
+    // ── Particles ──
+    (function(){
+      const canvas = document.getElementById('cv');
+      const ctx = canvas.getContext('2d');
+      let W, H, pts = [];
+      function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+      resize(); addEventListener('resize', resize);
+      const cols = ['rgba(0,212,255,','rgba(124,58,237,','rgba(236,72,153,'];
+      class P {
+        constructor(){ this.reset(); }
+        reset(){
+          this.x = Math.random()*W; this.y = Math.random()*H;
+          this.r = Math.random()*1.4+.3;
+          this.vx=(Math.random()-.5)*.35; this.vy=(Math.random()-.5)*.35;
+          this.a=Math.random()*.45+.08;
+          this.c=cols[Math.floor(Math.random()*3)];
+        }
+        step(){
+          this.x+=this.vx; this.y+=this.vy;
+          if(this.x<0||this.x>W||this.y<0||this.y>H) this.reset();
+        }
+        draw(){
+          ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+          ctx.fillStyle=this.c+this.a+')'; ctx.fill();
+        }
+      }
+      for(let i=0;i<110;i++) pts.push(new P());
+      function link(){
+        for(let i=0;i<pts.length;i++)
+          for(let j=i+1;j<pts.length;j++){
+            const dx=pts[i].x-pts[j].x, dy=pts[i].y-pts[j].y, d=Math.sqrt(dx*dx+dy*dy);
+            if(d<105){ ctx.beginPath(); ctx.moveTo(pts[i].x,pts[i].y); ctx.lineTo(pts[j].x,pts[j].y);
+              ctx.strokeStyle=`rgba(0,212,255,${.055*(1-d/105)})`; ctx.lineWidth=.4; ctx.stroke(); }
+          }
+      }
+      function loop(){ ctx.clearRect(0,0,W,H); pts.forEach(p=>{p.step();p.draw();}); link(); requestAnimationFrame(loop); }
+      loop();
+    })();
+
+    // ── Typing ──
+    const phrases = [
+      'Desarrollador Full Stack 💻',
+      'React · Angular · Next.js · Flutter 🚀',
+      'Web & Mobile desde diseño hasta deploy ✨',
+      'Salud · Transporte · Educación · Arte 🌎',
+      'Explorando Docker, CI/CD y Supabase 🔧',
+    ];
+    let pi=0,ci=0,del=false;
+    const el=document.getElementById('typed');
+    function type(){
+      const p=phrases[pi];
+      if(!del){ el.innerHTML=p.slice(0,++ci)+'<span class="cursor">|</span>';
+        if(ci===p.length){del=true;setTimeout(type,2000);return;}
+      } else { el.innerHTML=p.slice(0,--ci)+'<span class="cursor">|</span>';
+        if(ci===0){del=false;pi=(pi+1)%phrases.length;}
+      }
+      setTimeout(type,del?38:62);
+    }
+    setTimeout(type,1400);
+
+    // ── Nav shrink ──
+    addEventListener('scroll',()=>{
+      document.getElementById('nav').style.padding=scrollY>50?'.55rem 2rem':'1rem 2rem';
+    });
+  </script>
+</body>
+</html>
