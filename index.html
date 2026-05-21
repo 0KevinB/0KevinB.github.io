@@ -179,6 +179,34 @@
       .hero-btns{flex-direction:column;align-items:center}
       .nav-cta .btn-outline{display:none}
     }
+
+    /* Language Switcher & Dual Mode Toggles */
+    html[lang="es"] .lang-en { display: none !important; }
+    html[lang="en"] .lang-es { display: none !important; }
+    
+    .lang-switch {
+      margin-left: 0.4rem;
+    }
+    .lang-btn {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--txt2);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding: 0.45rem 0.9rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .lang-btn:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      box-shadow: var(--glow-c);
+    }
   </style>
 </head>
 <body>
@@ -192,37 +220,56 @@
   <nav id="nav">
     <div class="logo">&lt;0KevinB /&gt;</div>
     <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#certifications">Certs</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about"><span class="lang-es">Sobre mí</span><span class="lang-en">About</span></a></li>
+      <li><a href="#experience"><span class="lang-es">Experiencia</span><span class="lang-en">Experience</span></a></li>
+      <li><a href="#skills"><span class="lang-es">Tecnologías</span><span class="lang-en">Skills</span></a></li>
+      <li><a href="#projects"><span class="lang-es">Proyectos</span><span class="lang-en">Projects</span></a></li>
+      <li><a href="#certifications"><span class="lang-es">Certificados</span><span class="lang-en">Certs</span></a></li>
+      <li><a href="#contact"><span class="lang-es">Contacto</span><span class="lang-en">Contact</span></a></li>
     </ul>
     <div class="nav-cta">
-      <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-outline btn-sm">
+      <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-outline btn-sm lang-es">
         <i class="fas fa-download"></i> CV
       </a>
-      <a href="https://www.linkedin.com/in/kevin-barrazueta" class="btn btn-primary btn-sm" target="_blank">
-        <i class="fab fa-linkedin"></i> Let's Talk
+      <a href="CV_Kevin_Barrazueta_English.html" class="btn btn-outline btn-sm lang-en" target="_blank">
+        <i class="fas fa-file-pdf"></i> English CV
       </a>
+      <a href="https://www.linkedin.com/in/kevin-barrazueta" class="btn btn-primary btn-sm" target="_blank">
+        <i class="fab fa-linkedin"></i> <span class="lang-es">Hablemos</span><span class="lang-en">Let's Talk</span>
+      </a>
+      <div class="lang-switch">
+        <button id="lang-toggle" class="lang-btn">
+          <i class="fas fa-globe"></i> EN
+        </button>
+      </div>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
     <div class="hero-content">
-      <p class="hero-greeting">👋 &nbsp;Hola, soy</p>
+      <p class="hero-greeting">
+        <span class="lang-es">👋 &nbsp;Hola, soy</span>
+        <span class="lang-en">👋 &nbsp;Hi, I'm</span>
+      </p>
       <h1 class="hero-name">Kevin Barrazueta</h1>
-      <p class="hero-title">Ingeniero en Ciencias de la Computación &nbsp;·&nbsp; Full Stack Developer</p>
+      <p class="hero-title">
+        <span class="lang-es">Ingeniero en Ciencias de la Computación &nbsp;·&nbsp; Full Stack Developer</span>
+        <span class="lang-en">Computer Science Engineer &nbsp;·&nbsp; Full Stack Developer</span>
+      </p>
       <p class="hero-loc"><i class="fas fa-map-marker-alt" style="color:var(--pink)"></i> &nbsp;Loja, Ecuador 🇪🇨</p>
       <p class="hero-typed" id="typed"></p>
       <div class="hero-btns">
         <a href="#projects" class="btn btn-primary">
-          <i class="fas fa-rocket"></i> Ver mis proyectos
+          <i class="fas fa-rocket"></i> 
+          <span class="lang-es">Ver mis proyectos</span>
+          <span class="lang-en">View my work</span>
         </a>
-        <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green">
+        <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green lang-es">
           <i class="fas fa-file-arrow-down"></i> Descargar CV
+        </a>
+        <a href="CV_Kevin_Barrazueta_English.html" class="btn btn-green lang-en" target="_blank">
+          <i class="fas fa-file-arrow-down"></i> View English CV
         </a>
         <a href="https://github.com/0KevinB" class="btn btn-outline" target="_blank">
           <i class="fab fa-github"></i> GitHub
@@ -236,36 +283,61 @@
   <section id="about">
     <div class="container">
       <div data-aos="fade-up">
-        <p class="section-label">// quién soy</p>
-        <h2 class="section-title">About Me</h2>
+        <p class="section-label">
+          <span class="lang-es">// quién soy</span>
+          <span class="lang-en">// who i am</span>
+        </p>
+        <h2 class="section-title">
+          <span class="lang-es">Sobre Mí</span>
+          <span class="lang-en">About Me</span>
+        </h2>
         <div class="section-bar"></div>
       </div>
       <div class="about-grid">
         <div class="about-text" data-aos="fade-right" data-aos-delay="100">
-          <p>Soy un <strong>Ingeniero en Ciencias de la Computación</strong> con experiencia práctica en desarrollo web y móvil <strong>full stack</strong>. Me especializo en construir productos completos: desde el diseño hasta el despliegue.</p>
-          <p>He trabajado en sectores de <strong>salud, educación, transporte y entretenimiento</strong>, creando soluciones reales con React, Angular, Next.js, React Native, Flutter, Supabase y más.</p>
-          <p>Me mueve construir cosas que <strong>impacten vidas reales</strong>, con código limpio, buenas prácticas y trabajo en equipo. Actualmente terminando mi carrera en <strong>UTPL (2021–2026)</strong>.</p>
+          <div class="lang-es">
+            <p>Soy un <strong>Ingeniero en Ciencias de la Computación</strong> con experiencia práctica en desarrollo web y móvil <strong>full stack</strong>. Me especializo en construir productos completos: desde el diseño hasta el despliegue.</p>
+            <p>He trabajado en sectores de <strong>salud, educación, transporte y entretenimiento</strong>, creando soluciones reales con React, Angular, Next.js, React Native, Flutter, Supabase y más.</p>
+            <p>Me mueve construir cosas que <strong>impacten vidas reales</strong>, con código limpio, buenas prácticas y trabajo en equipo. Actualmente terminando mi carrera en <strong>UTPL (2021–2026)</strong>.</p>
+          </div>
+          <div class="lang-en">
+            <p>I am a <strong>Computer Science Engineer</strong> specializing in <strong>full-stack</strong> web and mobile development. I focus on building end-to-end software products, handling everything from Figma UI/UX to final database architecture and production deployment.</p>
+            <p>I have built robust solutions for the <strong>healthcare, education, urban transit, and entertainment</strong> sectors utilizing Next.js, React, React Native, Flutter, Supabase, and Firebase.</p>
+            <p>I am driven to build high-performance products that <strong>impact real lives</strong>, using clean code, agile methodologies, and robust infrastructure. Currently wrapping up my degree at <strong>UTPL (2021–2026)</strong>.</p>
+          </div>
           <div class="about-actions">
             <a href="https://www.linkedin.com/in/kevin-barrazueta" class="btn btn-primary" target="_blank">
               <i class="fab fa-linkedin"></i> LinkedIn
             </a>
-            <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green">
+            <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green lang-es">
               <i class="fas fa-file-arrow-down"></i> Descargar CV
+            </a>
+            <a href="CV_Kevin_Barrazueta_English.html" class="btn btn-green lang-en" target="_blank">
+              <i class="fas fa-file-arrow-down"></i> View English CV
             </a>
           </div>
         </div>
         <div class="stats-grid" data-aos="fade-left" data-aos-delay="200">
           <div class="stat-card">
             <div class="stat-n">6+</div>
-            <div class="stat-l">Proyectos Destacados</div>
+            <div class="stat-l">
+              <span class="lang-es">Proyectos Destacados</span>
+              <span class="lang-en">Featured Projects</span>
+            </div>
           </div>
           <div class="stat-card">
             <div class="stat-n">29+</div>
-            <div class="stat-l">Repositorios</div>
+            <div class="stat-l">
+              <span class="lang-es">Repositorios</span>
+              <span class="lang-en">Repositories</span>
+            </div>
           </div>
           <div class="stat-card">
             <div class="stat-n">3</div>
-            <div class="stat-l">Certificaciones</div>
+            <div class="stat-l">
+              <span class="lang-es">Certificaciones</span>
+              <span class="lang-en">Certifications</span>
+            </div>
           </div>
           <div class="stat-card">
             <div class="stat-n">🇪🇨</div>
@@ -280,56 +352,96 @@
   <section id="experience">
     <div class="container">
       <div data-aos="fade-up">
-        <p class="section-label">// trayectoria</p>
-        <h2 class="section-title">Experience</h2>
+        <p class="section-label">
+          <span class="lang-es">// trayectoria</span>
+          <span class="lang-en">// career path</span>
+        </p>
+        <h2 class="section-title">
+          <span class="lang-es">Experiencia</span>
+          <span class="lang-en">Experience</span>
+        </h2>
         <div class="section-bar"></div>
       </div>
       <div class="timeline">
 
         <div class="tl-item" data-aos="fade-up" data-aos-delay="100">
           <div class="tl-dot"></div>
-          <div class="tl-period">Sep 2025 — May 2026</div>
+          <div class="tl-period">
+            <span class="lang-es">Sep 2025 — May 2026</span>
+            <span class="lang-en">Sep 2025 — May 2026</span>
+          </div>
           <div class="tl-role">Full Stack Developer</div>
           <div class="tl-company">🏥 MediHelp &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Juan Carlos Cabrera</span></div>
-          <ul class="tl-points">
+          <ul class="tl-points lang-es">
             <li>Desarrollé la app web y móvil para pacientes y médicos con Next.js, React Native y Supabase.</li>
             <li>Implementé gestión de historial clínico, agenda de citas, recordatorios y subida de exámenes.</li>
             <li>Construí canal de mensajería en tiempo real entre pacientes y doctores.</li>
             <li>Desarrollé panel médico completo: agenda, fichas de pacientes y gestión de consultas.</li>
           </ul>
+          <ul class="tl-points lang-en">
+            <li>Architected and built a cross-platform healthcare web and mobile app using Next.js, React Native, and Supabase.</li>
+            <li>Implemented medical record flows, appointment scheduling, automated reminders, and cloud medical uploads.</li>
+            <li>Engineered a real-time messaging chat system between patients and doctors with instant notifications.</li>
+            <li>Designed and deployed the medical administration dashboard, optimizing clinical workflows.</li>
+          </ul>
         </div>
 
         <div class="tl-item" data-aos="fade-up" data-aos-delay="150">
           <div class="tl-dot"></div>
-          <div class="tl-period">Enero 2025</div>
+          <div class="tl-period">
+            <span class="lang-es">Enero 2025</span>
+            <span class="lang-en">January 2025</span>
+          </div>
           <div class="tl-role">Full Stack Developer</div>
           <div class="tl-company">🎮 Aprendizaje Basado en Juegos &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Stalyn Tapia</span></div>
-          <ul class="tl-points">
+          <ul class="tl-points lang-es">
             <li>Plataforma educativa web con minijuegos interactivos sobre los imperios de la Edad Antigua.</li>
             <li>Diseñé la experiencia gamificada: progresión de niveles, puntuaciones y retroalimentación inmediata.</li>
             <li>Stack: Next.js, JavaScript y Firebase.</li>
+          </ul>
+          <ul class="tl-points lang-en">
+            <li>Developed a gamified web application featuring interactive educational mini-games about Ancient History.</li>
+            <li>Designed the full gamification logic, including level maps, score calculations, and real-time user feedback.</li>
+            <li>Stack: Next.js, JavaScript, Tailwind CSS, and Firebase.</li>
           </ul>
         </div>
 
         <div class="tl-item" data-aos="fade-up" data-aos-delay="200">
           <div class="tl-dot"></div>
-          <div class="tl-period">Sep — Oct 2024</div>
+          <div class="tl-period">
+            <span class="lang-es">Sep — Oct 2024</span>
+            <span class="lang-en">Sep — Oct 2024</span>
+          </div>
           <div class="tl-role">Full Stack Developer</div>
           <div class="tl-company">💚 QR Refugio &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Stalyn Tapia</span></div>
-          <ul class="tl-points">
+          <ul class="tl-points lang-es">
             <li>Plataforma de acompañamiento emocional para adolescentes con React Native y Firebase.</li>
             <li>Permite crear y seguir cursos, cargar lecturas y artículos.</li>
             <li>Implementé flujos de registro y seguimiento de casos en tiempo real.</li>
+          </ul>
+          <ul class="tl-points lang-en">
+            <li>Built a mobile emotional support platform for teenagers using React Native and Firebase.</li>
+            <li>Implemented student registration flows, real-time case tracking, and course management features.</li>
+            <li>Engineered interactive lecture and article upload capabilities.</li>
           </ul>
         </div>
 
         <div class="tl-item" data-aos="fade-up" data-aos-delay="250">
           <div class="tl-dot"></div>
-          <div class="tl-period">Mar — Ago 2023</div>
-          <div class="tl-role">Atención al Cliente</div>
+          <div class="tl-period">
+            <span class="lang-es">Mar — Ago 2023</span>
+            <span class="lang-en">Mar — Aug 2023</span>
+          </div>
+          <div class="tl-role">
+            <span class="lang-es">Atención al Cliente</span>
+            <span class="lang-en">Customer Support Associate</span>
+          </div>
           <div class="tl-company">🏪 DK Store &nbsp;·&nbsp; <span style="font-size:.8rem;color:var(--muted)">Ref: Jimmy Jumbo</span></div>
-          <ul class="tl-points">
+          <ul class="tl-points lang-es">
             <li>Atención directa al cliente y gestión de servicios en entorno comercial de ritmo acelerado.</li>
+          </ul>
+          <ul class="tl-points lang-en">
+            <li>Provided direct customer support and service administration in a fast-paced retail commercial environment.</li>
           </ul>
         </div>
 
@@ -341,8 +453,14 @@
   <section id="skills">
     <div class="container">
       <div data-aos="fade-up">
-        <p class="section-label">// herramientas</p>
-        <h2 class="section-title">Tech Stack</h2>
+        <p class="section-label">
+          <span class="lang-es">// herramientas</span>
+          <span class="lang-en">// tools & stack</span>
+        </p>
+        <h2 class="section-title">
+          <span class="lang-es">Tecnologías</span>
+          <span class="lang-en">Tech Stack</span>
+        </h2>
         <div class="section-bar"></div>
       </div>
       <div class="skills-cats">
@@ -415,8 +533,14 @@
   <section id="projects">
     <div class="container">
       <div data-aos="fade-up">
-        <p class="section-label">// lo que he construido</p>
-        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-label">
+          <span class="lang-es">// lo que he construido</span>
+          <span class="lang-en">// what i have built</span>
+        </p>
+        <h2 class="section-title">
+          <span class="lang-es">Proyectos Destacados</span>
+          <span class="lang-en">Featured Projects</span>
+        </h2>
         <div class="section-bar"></div>
       </div>
       <div class="projects-grid">
@@ -427,8 +551,12 @@
             <span class="proj-period">2025 – 2026</span>
           </div>
           <div class="proj-title">MediHelp</div>
-          <div class="proj-subtitle">Sistema Integral de Salud</div>
-          <p class="proj-desc">Plataforma completa para pacientes y médicos: historial clínico, agenda de citas, recordatorios de medicamentos, mensajería en tiempo real y módulo médico con gestión de consultas. Arquitectura full stack con auth segura y notificaciones push.</p>
+          <div class="proj-subtitle">
+            <span class="lang-es">Sistema Integral de Salud</span>
+            <span class="lang-en">Complete Healthcare System</span>
+          </div>
+          <p class="proj-desc lang-es">Plataforma completa para pacientes y médicos: historial clínico, agenda de citas, recordatorios de medicamentos, mensajería en tiempo real y módulo médico con gestión de consultas. Arquitectura full stack con auth segura y notificaciones push.</p>
+          <p class="proj-desc lang-en">Complete medical ecosystem connecting patients and doctors. Features full electronic health records, automated medication triggers, direct real-time messaging, and clinical appointment agendas. built using Next.js, React Native, and Supabase.</p>
           <div class="proj-tags">
             <span class="tag">Next.js</span>
             <span class="tag">React Native</span>
@@ -437,7 +565,7 @@
           </div>
           <div class="proj-links">
             <a href="https://medihelp.lat" class="proj-link" target="_blank"><i class="fas fa-external-link-alt"></i> medihelp.lat</a>
-            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Código</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> <span class="lang-es">Código</span><span class="lang-en">Code</span></a>
           </div>
         </div>
 
@@ -447,8 +575,12 @@
             <span class="proj-period">2024 – 2025</span>
           </div>
           <div class="proj-title">TransiLoja</div>
-          <div class="proj-subtitle">App de Transporte Público · Tesis de Grado</div>
-          <p class="proj-desc">Prototipo de app móvil para el sistema de transporte urbano de Loja. Integra estándares GTFS, geolocalización en tiempo real e interfaz diferenciada para pasajeros y operadores. Pruebas de usabilidad con usuarios reales.</p>
+          <div class="proj-subtitle">
+            <span class="lang-es">App de Transporte Público · Tesis de Grado</span>
+            <span class="lang-en">Public Transit Mobile App · Thesis Project</span>
+          </div>
+          <p class="proj-desc lang-es">Prototipo de app móvil para el sistema de transporte urbano de Loja. Integra estándares GTFS, geolocalización en tiempo real e interfaz diferenciada para pasajeros y operadores. Pruebas de usabilidad con usuarios reales.</p>
+          <p class="proj-desc lang-en">High-performance transit application prototype for urban buses in Loja. Features GTFS compliance, real-time geotracking, and tailored operator vs passenger dashboards. Achieved outstanding academic distinction at UTPL.</p>
           <div class="proj-tags">
             <span class="tag">React Native</span>
             <span class="tag">Expo</span>
@@ -457,7 +589,7 @@
             <span class="tag purple">GTFS</span>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> <span class="lang-es">Repositorio</span><span class="lang-en">Repository</span></a>
           </div>
         </div>
 
@@ -467,8 +599,12 @@
             <span class="proj-period">2024 – 2025</span>
           </div>
           <div class="proj-title">LatinoXYZ</div>
-          <div class="proj-subtitle">Red Social para Artistas Latinos</div>
-          <p class="proj-desc">Plataforma estilo red social donde artistas latinos publican contenido, se publicitan y generan ventas. Desarrollé feeds, perfiles de artistas, sistema de publicaciones y módulo de comercialización.</p>
+          <div class="proj-subtitle">
+            <span class="lang-es">Red Social para Artistas Latinos</span>
+            <span class="lang-en">Social Network for Latin Artists</span>
+          </div>
+          <p class="proj-desc lang-es">Plataforma estilo red social donde artistas latinos publican contenido, se publicitan y generan ventas. Desarrollé feeds, perfiles de artistas, sistema de publicaciones y módulo de comercialización.</p>
+          <p class="proj-desc lang-en">A tailored social network and showcase marketplace for Latin American creators. Developed customizable artist layout profiles, dynamic feed generation, artwork uploads, and an e-commerce transactional module.</p>
           <div class="proj-tags">
             <span class="tag">Next.js</span>
             <span class="tag">Firebase</span>
@@ -476,7 +612,7 @@
             <span class="tag">Tailwind CSS</span>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> <span class="lang-es">Repositorio</span><span class="lang-en">Repository</span></a>
           </div>
         </div>
 
@@ -486,15 +622,19 @@
             <span class="proj-period">Enero 2025</span>
           </div>
           <div class="proj-title">Aprendizaje Basado en Juegos</div>
-          <div class="proj-subtitle">Plataforma Educativa Gamificada</div>
-          <p class="proj-desc">Plataforma educativa web con minijuegos interactivos (sopa de letras, quiz, videos) sobre los imperios de la Edad Antigua. Progresión de niveles, puntuaciones y retroalimentación inmediata para estudiantes de primaria.</p>
+          <div class="proj-subtitle">
+            <span class="lang-es">Plataforma Educativa Gamificada</span>
+            <span class="lang-en">Gamified Learning Platform</span>
+          </div>
+          <p class="proj-desc lang-es">Plataforma educativa web con minijuegos interactivos (sopa de letras, quiz, videos) sobre los imperios de la Edad Antigua. Progresión de niveles, puntuaciones y retroalimentación inmediata para estudiantes de primaria.</p>
+          <p class="proj-desc lang-en">E-learning game dashboard focused on Ancient History. Programmed dynamic gamification systems including level advancement, custom crossword/quiz games, scoring databases, and quick feedback modals.</p>
           <div class="proj-tags">
             <span class="tag">Next.js</span>
             <span class="tag">Firebase</span>
             <span class="tag">JavaScript</span>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> <span class="lang-es">Repositorio</span><span class="lang-en">Repository</span></a>
           </div>
         </div>
 
@@ -503,16 +643,23 @@
             <span class="proj-emoji">📱</span>
             <span class="proj-period">2024 – 2025</span>
           </div>
-          <div class="proj-title">App Móvil con Flutter</div>
-          <div class="proj-subtitle">Aplicación Multiplataforma Android/iOS</div>
-          <p class="proj-desc">Desarrollo de aplicación móvil multiplataforma con Flutter y Dart. Integración con Firebase para autenticación, base de datos en tiempo real y almacenamiento cloud.</p>
+          <div class="proj-title">
+            <span class="lang-es">App Móvil con Flutter</span>
+            <span class="lang-en">Flutter Mobile Application</span>
+          </div>
+          <div class="proj-subtitle">
+            <span class="lang-es">Aplicación Multiplataforma Android/iOS</span>
+            <span class="lang-en">Cross-Platform Android/iOS Application</span>
+          </div>
+          <p class="proj-desc lang-es">Desarrollo de aplicación móvil multiplataforma con Flutter y Dart. Integración con Firebase para autenticación, base de datos en tiempo real y almacenamiento cloud.</p>
+          <p class="proj-desc lang-en">Designed and implemented a cross-platform Android & iOS utility application using Flutter and Dart. Hooked up Firebase Auth, Firestore synchronized storage, and remote media file handling.</p>
           <div class="proj-tags">
             <span class="tag purple">Flutter</span>
             <span class="tag purple">Dart</span>
             <span class="tag">Firebase</span>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> <span class="lang-es">Repositorio</span><span class="lang-en">Repository</span></a>
           </div>
         </div>
 
@@ -522,15 +669,19 @@
             <span class="proj-period">Ene – Feb 2024</span>
           </div>
           <div class="proj-title">New Wave Forex</div>
-          <div class="proj-subtitle">Automatización de Inscripciones</div>
-          <p class="proj-desc">Proyecto universitario (UTPL): automatización del flujo de ingreso de nuevos estudiantes a la plataforma de New Wave Forex. Frontend y backend con validaciones, notificaciones automáticas y panel de administración.</p>
+          <div class="proj-subtitle">
+            <span class="lang-es">Automatización de Inscripciones</span>
+            <span class="lang-en">Automated Registration Workflows</span>
+          </div>
+          <p class="proj-desc lang-es">Proyecto universitario (UTPL): automatización del flujo de ingreso de nuevos estudiantes a la plataforma de New Wave Forex. Frontend y backend con validaciones, notificaciones automáticas y panel de administración.</p>
+          <p class="proj-desc lang-en">UTPL academic software: engineered automated enrollment registration pipelines for the New Wave Forex system. Built form validation models, automated email alerts, and administrative overview dashboards.</p>
           <div class="proj-tags">
             <span class="tag">Next.js</span>
             <span class="tag">Firebase</span>
             <span class="tag">TypeScript</span>
           </div>
           <div class="proj-links">
-            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> Repositorio</a>
+            <a href="https://github.com/0KevinB" class="proj-link" target="_blank"><i class="fab fa-github"></i> <span class="lang-es">Repositorio</span><span class="lang-en">Repository</span></a>
           </div>
         </div>
 
@@ -542,8 +693,14 @@
   <section id="certifications">
     <div class="container">
       <div data-aos="fade-up">
-        <p class="section-label">// logros</p>
-        <h2 class="section-title">Certifications</h2>
+        <p class="section-label">
+          <span class="lang-es">// logros</span>
+          <span class="lang-en">// achievements</span>
+        </p>
+        <h2 class="section-title">
+          <span class="lang-es">Certificaciones</span>
+          <span class="lang-en">Certifications</span>
+        </h2>
         <div class="section-bar"></div>
       </div>
       <div class="certs-grid">
@@ -551,7 +708,10 @@
         <div class="cert-card" data-aos="fade-up" data-aos-delay="80">
           <div class="cert-icon cisco"><i class="fas fa-network-wired"></i></div>
           <div class="cert-body">
-            <div class="cert-title">CCNA: Introducción a Redes</div>
+            <div class="cert-title">
+              <span class="lang-es">CCNA: Introducción a Redes</span>
+              <span class="lang-en">CCNA: Introduction to Networks</span>
+            </div>
             <div class="cert-issuer">Cisco Networking Academy</div>
             <div class="cert-year">2024</div>
           </div>
@@ -583,13 +743,20 @@
   <section id="contact">
     <div class="container">
       <div data-aos="fade-up" style="text-align:center">
-        <p class="section-label">// hablemos</p>
-        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-label">
+          <span class="lang-es">// hablemos</span>
+          <span class="lang-en">// let's connect</span>
+        </p>
+        <h2 class="section-title">
+          <span class="lang-es">Contacto</span>
+          <span class="lang-en">Get In Touch</span>
+        </h2>
         <div class="section-bar" style="margin:0 auto 2.5rem"></div>
       </div>
       <div class="contact-wrap">
         <p class="contact-intro" data-aos="fade-up" data-aos-delay="80">
-          Estoy abierto a proyectos interesantes, colaboraciones o simplemente una buena conversación tech. Si tienes una idea o quieres trabajar juntos, ¡escríbeme!
+          <span class="lang-es">Estoy abierto a proyectos interesantes, colaboraciones o simplemente una buena conversación tech. Si tienes una idea o quieres trabajar juntos, ¡escríbeme!</span>
+          <span class="lang-en">I am highly open to software contracts, professional collaborations, or just a good technical discussion. If you have an exciting idea or want to hire me, drop me a message!</span>
         </p>
         <div class="contact-cards" data-aos="fade-up" data-aos-delay="160">
           <a href="https://www.linkedin.com/in/kevin-barrazueta" class="cc li" target="_blank">
@@ -607,10 +774,15 @@
         </div>
         <div data-aos="fade-up" data-aos-delay="240" style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
           <a href="mailto:kevin010803abq@gmail.com" class="btn btn-primary" style="font-size:1rem;padding:.9rem 2.2rem">
-            <i class="fas fa-paper-plane"></i> Enviar mensaje
+            <i class="fas fa-paper-plane"></i> 
+            <span class="lang-es">Enviar mensaje</span>
+            <span class="lang-en">Send Message</span>
           </a>
-          <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green" style="font-size:1rem;padding:.9rem 2.2rem">
+          <a href="CV_Kevin_Barrazueta.pdf" download class="btn btn-green lang-es" style="font-size:1rem;padding:.9rem 2.2rem">
             <i class="fas fa-file-arrow-down"></i> Descargar CV
+          </a>
+          <a href="CV_Kevin_Barrazueta_English.html" class="btn btn-green lang-en" target="_blank" style="font-size:1rem;padding:.9rem 2.2rem">
+            <i class="fas fa-file-arrow-down"></i> View English CV
           </a>
         </div>
       </div>
@@ -619,7 +791,11 @@
 
   <!-- FOOTER -->
   <footer>
-    <p>Diseñado & construido con <span>♥</span> por Kevin Barrazueta &nbsp;·&nbsp; Loja, Ecuador 🇪🇨 &nbsp;·&nbsp; <a href="mailto:kevin010803abq@gmail.com" style="color:var(--cyan);text-decoration:none">kevin010803abq@gmail.com</a></p>
+    <p>
+      <span class="lang-es">Diseñado & construido con <span>♥</span> por Kevin Barrazueta &nbsp;·&nbsp; Loja, Ecuador 🇪🇨 &nbsp;·&nbsp;</span>
+      <span class="lang-en">Designed & built with <span>♥</span> by Kevin Barrazueta &nbsp;·&nbsp; Loja, Ecuador 🇪🇨 &nbsp;·&nbsp;</span>
+      <a href="mailto:kevin010803abq@gmail.com" style="color:var(--cyan);text-decoration:none">kevin010803abq@gmail.com</a>
+    </p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -665,26 +841,73 @@
       loop();
     })();
 
-    // ── Typing ──
-    const phrases = [
+    // ── Typing & Language Switching ──
+    const phrasesEs = [
       'Desarrollador Full Stack 💻',
       'React · Angular · Next.js · Flutter 🚀',
       'Web & Mobile desde diseño hasta deploy ✨',
       'Salud · Transporte · Educación · Arte 🌎',
       'Explorando Docker, CI/CD y Supabase 🔧',
     ];
+    const phrasesEn = [
+      'Full Stack Developer 💻',
+      'React · Angular · Next.js · Flutter 🚀',
+      'End-to-End Web & Mobile solutions ✨',
+      'Healthcare · Transit · Education · Art 🌎',
+      'Mastering Docker, CI/CD, and Supabase 🔧',
+    ];
+    
+    let activePhrases = phrasesEs;
     let pi=0,ci=0,del=false;
     const el=document.getElementById('typed');
+    let typingTimer = null;
+    
     function type(){
-      const p=phrases[pi];
-      if(!del){ el.innerHTML=p.slice(0,++ci)+'<span class="cursor">|</span>';
-        if(ci===p.length){del=true;setTimeout(type,2000);return;}
-      } else { el.innerHTML=p.slice(0,--ci)+'<span class="cursor">|</span>';
-        if(ci===0){del=false;pi=(pi+1)%phrases.length;}
+      const p = activePhrases[pi];
+      if(!p) {
+        pi = 0;
+        typingTimer = setTimeout(type, 100);
+        return;
       }
-      setTimeout(type,del?38:62);
+      if(!del){ el.innerHTML=p.slice(0,++ci)+'<span class="cursor">|</span>';
+        if(ci===p.length){del=true;typingTimer=setTimeout(type,2000);return;}
+      } else { el.innerHTML=p.slice(0,--ci)+'<span class="cursor">|</span>';
+        if(ci===0){del=false;pi=(pi+1)%activePhrases.length;}
+      }
+      typingTimer = setTimeout(type,del?38:62);
     }
-    setTimeout(type,1400);
+    
+    // Language Controller
+    const langToggle = document.getElementById('lang-toggle');
+    let currentLang = localStorage.getItem('pref-lang') || 'es';
+    
+    function setLanguage(lang) {
+      document.documentElement.setAttribute('lang', lang);
+      localStorage.setItem('pref-lang', lang);
+      currentLang = lang;
+      
+      if (lang === 'es') {
+        langToggle.innerHTML = '<i class="fas fa-globe"></i> EN';
+        activePhrases = phrasesEs;
+      } else {
+        langToggle.innerHTML = '<i class="fas fa-globe"></i> ES';
+        activePhrases = phrasesEn;
+      }
+      
+      // Reset typing state to start clean on lang change
+      clearTimeout(typingTimer);
+      ci = 0;
+      pi = 0;
+      del = false;
+      type();
+    }
+    
+    langToggle.addEventListener('click', () => {
+      setLanguage(currentLang === 'es' ? 'en' : 'es');
+    });
+    
+    // Initial load will be handled automatically by setLanguage
+    setLanguage(currentLang);
 
     // ── Nav shrink ──
     addEventListener('scroll',()=>{
