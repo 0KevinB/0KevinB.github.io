@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kevin Barrazueta | Curriculum Vitae</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <style>
+    /* Theme Tokens */
+    :root {
+      --bg: #09090e;
+      --bg-gradient: linear-gradient(135deg, #09090e 0%, #0e0e18 100%);
+      --card-bg: rgba(18, 18, 31, 0.7);
+      --card-border: rgba(255, 255, 255, 0.06);
+      --accent-grad: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #ec4899 100%);
+      --cyan: #00d4ff;
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --green: #10b981;
+      --txt-main: #f3f4f6;
+      --txt-muted: #9ca3af;
+      --txt-dark: #6b7280;
+      --glow-cyan: 0 0 30px rgba(0, 212, 255, 0.15);
+      --shadow-premium: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      background-image: var(--bg-gradient);
+      color: var(--txt-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background Orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      z-index: 0;
+      pointer-events: none;
+    }
+    .orb-1 {
+      width: 500px;
+      height: 500px;
+      top: -100px;
+      left: -100px;
+      background: rgba(0, 212, 255, 0.04);
+    }
+    .orb-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -50px;
+      right: -50px;
+      background: rgba(124, 58, 237, 0.05);
+    }
+
+    /* Layout Wrapper */
+    .cv-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Actions Bar */
+    .actions-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--txt-muted);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-family: 'Fira Code', monospace;
+      transition: color 0.3s;
+    }
+    .back-btn:hover {
+      color: var(--cyan);
+    }
+    .print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--accent-grad);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+      transition: all 0.3s;
+    }
+    .print-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+    }
+
+    /* CV Document Styles (Web Version) */
+    .cv-paper {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 3rem;
+      box-shadow: var(--shadow-premium);
+      backdrop-filter: blur(15px);
+    }
+
+    /* Header Profile */
+    .cv-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+    }
+    .header-left h1 {
+      font-size: 2.8rem;
+      font-weight: 900;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 0.3rem;
+    }
+    .header-left .title {
+      font-family: 'Fira Code', monospace;
+      font-size: 1.15rem;
+      color: var(--cyan);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .header-right {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      font-size: 0.88rem;
+      color: var(--txt-muted);
+    }
+    .header-right a {
+      color: var(--txt-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .header-right a:hover {
+      color: var(--cyan);
+    }
+    .header-right i {
+      width: 18px;
+      color: var(--pink);
+    }
+
+    /* Grid Details */
+    .cv-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 2.8rem;
+    }
+
+    /* Sidebar Column */
+    .cv-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* Main Body Column */
+    .cv-main {
+      display: flex;
+      flex-direction: column;
+      gap: 2.2rem;
+    }
+
+    /* Section Components */
+    .section-title {
+      font-size: 0.85rem;
+      font-family: 'Fira Code', monospace;
+      font-weight: 700;
+      color: var(--pink);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    /* Sidebar Blocks */
+    .skill-cat {
+      margin-bottom: 1.2rem;
+    }
+    .skill-cat-name {
+      font-size: 0.78rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--cyan);
+      margin-bottom: 0.55rem;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .skill-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .skill-pill {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.7rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--txt-muted);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .sidebar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .sidebar-item {
+      position: relative;
+      padding-left: 0.8rem;
+    }
+    .sidebar-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5rem;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--purple);
+    }
+    .sidebar-item-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--txt-main);
+    }
+    .sidebar-item-desc {
+      font-size: 0.78rem;
+      color: var(--txt-muted);
+    }
+    .sidebar-item-meta {
+      font-size: 0.72rem;
+      color: var(--txt-dark);
+      font-family: 'Fira Code', monospace;
+      margin-top: 0.1rem;
+    }
+
+    /* Main Body Components */
+    .summary-text {
+      font-size: 0.94rem;
+      color: var(--txt-muted);
+      text-align: justify;
+      line-height: 1.7;
+    }
+
+    /* Experience Card */
+    .timeline-item {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid rgba(255, 255, 255, 0.04);
+      margin-bottom: 1.8rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 0.35rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 8px var(--cyan);
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-header h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--txt-main);
+    }
+    .timeline-header .period {
+      font-size: 0.78rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--cyan);
+    }
+    .timeline-subheader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      margin-bottom: 0.5rem;
+    }
+    .timeline-subheader .company {
+      color: var(--txt-muted);
+      font-weight: 500;
+    }
+    .timeline-subheader .reference {
+      font-size: 0.78rem;
+      color: var(--pink);
+      font-family: 'Fira Code', monospace;
+    }
+    .timeline-bullets {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+    .timeline-bullets li {
+      font-size: 0.88rem;
+      color: var(--txt-muted);
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+      position: relative;
+      padding-left: 0.9rem;
+    }
+    .timeline-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--purple);
+    }
+
+    /* Project Cards */
+    .project-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      padding: 1.2rem;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      transition: all 0.3s;
+    }
+    .project-card:hover {
+      border-color: rgba(0, 212, 255, 0.15);
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateY(-2px);
+    }
+    .project-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.35rem;
+    }
+    .project-title-row h4 {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--txt-main);
+    }
+    .project-title-row .proj-year {
+      font-size: 0.75rem;
+      font-family: 'Fira Code', monospace;
+      color: var(--txt-dark);
+    }
+    .project-tech {
+      font-family: 'Fira Code', monospace;
+      font-size: 0.74rem;
+      color: var(--pink);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .project-desc {
+      font-size: 0.85rem;
+      color: var(--txt-muted);
+      line-height: 1.6;
+    }
+    .project-bullets {
+      list-style: none;
+      padding-left: 0.2rem;
+      margin-top: 0.5rem;
+    }
+    .project-bullets li {
+      font-size: 0.82rem;
+      color: var(--txt-muted);
+      margin-bottom: 0.25rem;
+      line-height: 1.4;
+      position: relative;
+      padding-left: 0.8rem;
+    }
+    .project-bullets li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--cyan);
+    }
+
+    /* References Grid */
+    .references-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    .reference-card {
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .ref-name {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--txt-main);
+      margin-bottom: 0.15rem;
+    }
+    .ref-relation {
+      font-size: 0.78rem;
+      color: var(--cyan);
+      font-family: 'Fira Code', monospace;
+      margin-bottom: 0.35rem;
+    }
+    .ref-phone {
+      font-size: 0.82rem;
+      color: var(--txt-muted);
+    }
+    .ref-phone i {
+      color: var(--pink);
+      margin-right: 0.3rem;
+    }
+
+    /* Footer Credits */
+    .cv-footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.78rem;
+      color: var(--txt-dark);
+      font-family: 'Fira Code', monospace;
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 850px) {
+      .cv-grid {
+        grid-template-columns: 1fr;
+        gap: 2.2rem;
+      }
+      .cv-header {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+      .header-right {
+        text-align: left;
+      }
+      .cv-paper {
+        padding: 2rem;
+      }
+      .references-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==========================================
+       ATS & PRINT COMPLIANCE STYLES (Cmd+P)
+       ========================================== */
+    @media print {
+      body {
+        background: #fff !important;
+        background-image: none !important;
+        color: #111 !important;
+        font-size: 9.5pt !important;
+        line-height: 1.4 !important;
+      }
+      
+      .orb, .actions-bar, .cv-footer, .print-btn, .back-btn {
+        display: none !important;
+      }
+      
+      .cv-container {
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      .cv-paper {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+      }
+
+      /* Formatting Header */
+      .cv-header {
+        border-bottom: 2px solid #222 !important;
+        padding-bottom: 8px !important;
+        margin-bottom: 14px !important;
+        display: block !important;
+      }
+      
+      .header-left {
+        float: left;
+        width: 60%;
+      }
+      .header-left h1 {
+        color: #111 !important;
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        -webkit-text-fill-color: initial !important;
+        background-clip: initial !important;
+        font-size: 24pt !important;
+        font-weight: 800 !important;
+        margin-bottom: 2px !important;
+      }
+      .header-left .title {
+        color: #333 !important;
+        font-size: 11pt !important;
+        font-weight: 700 !important;
+      }
+
+      .header-right {
+        float: right;
+        width: 40%;
+        text-align: right !important;
+        color: #222 !important;
+        font-size: 8.5pt !important;
+        gap: 1px !important;
+      }
+      .header-right i {
+        color: #333 !important;
+      }
+      
+      .cv-header::after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* Keep 2-column layout in print to match exact layout cleanly */
+      .cv-grid {
+        display: grid !important;
+        grid-template-columns: 240px 1fr !important;
+        gap: 1.8rem !important;
+      }
+
+      .cv-sidebar {
+        width: 240px !important;
+        gap: 1.4rem !important;
+      }
+
+      .cv-main {
+        gap: 1.4rem !important;
+      }
+
+      /* Titles standard printing styles */
+      .section-title {
+        color: #111 !important;
+        font-size: 9.5pt !important;
+        font-weight: 800 !important;
+        border-bottom: 1.5px solid #222 !important;
+        padding-bottom: 2px !important;
+        margin-bottom: 8px !important;
+        letter-spacing: 0.05em !important;
+      }
+      .section-title::after {
+        display: none !important;
+      }
+
+      /* Text standard print colors */
+      .summary-text {
+        color: #222 !important;
+        font-size: 9pt !important;
+        line-height: 1.45 !important;
+        margin-bottom: 8px !important;
+      }
+
+      /* Sidebar Pills Overrides */
+      .skill-pill {
+        background: transparent !important;
+        border: 1px solid #aaa !important;
+        color: #111 !important;
+        font-size: 7.8pt !important;
+        padding: 1.5px 4.5px !important;
+        border-radius: 2px !important;
+      }
+      .skill-cat {
+        margin-bottom: 0.8rem !important;
+      }
+      .skill-cat-name {
+        color: #222 !important;
+        font-size: 7.5pt !important;
+        margin-bottom: 0.25rem !important;
+      }
+
+      /* Experience List */
+      .timeline-item {
+        border-left: none !important;
+        padding-left: 0 !important;
+        margin-bottom: 12px !important;
+        page-break-inside: avoid !important;
+      }
+      .timeline-item::before {
+        display: none !important;
+      }
+      .timeline-header h3 {
+        color: #111 !important;
+        font-size: 10pt !important;
+      }
+      .timeline-header .period {
+        color: #111 !important;
+        font-weight: 600 !important;
+        font-size: 8.5pt !important;
+      }
+      .timeline-subheader {
+        font-size: 8.5pt !important;
+        margin-bottom: 0.25rem !important;
+      }
+      .timeline-subheader .company {
+        color: #111 !important;
+        font-weight: 700 !important;
+      }
+      .timeline-subheader .reference {
+        color: #444 !important;
+        font-size: 7.8pt !important;
+      }
+      .timeline-bullets li {
+        color: #222 !important;
+        font-size: 8.5pt !important;
+        margin-bottom: 2px !important;
+        padding-left: 0.8rem !important;
+      }
+      .timeline-bullets li::before {
+        content: '•' !important;
+        color: #333 !important;
+      }
+
+      /* Project Cards Print */
+      .project-card {
+        background: transparent !important;
+        border: none !important;
+        padding: 0 !important;
+        margin-bottom: 10px !important;
+        page-break-inside: avoid !important;
+      }
+      .project-title-row h4 {
+        color: #111 !important;
+        font-size: 9.5pt !important;
+      }
+      .project-title-row .proj-year {
+        color: #111 !important;
+        font-size: 8pt !important;
+      }
+      .project-tech {
+        color: #444 !important;
+        font-size: 7.8pt !important;
+        font-weight: 700 !important;
+        margin-bottom: 2px !important;
+      }
+      .project-desc {
+        color: #222 !important;
+        font-size: 8.5pt !important;
+      }
+      .project-bullets li {
+        font-size: 8pt !important;
+        color: #222 !important;
+      }
+      .project-bullets li::before {
+        color: #444 !important;
+      }
+
+      /* References */
+      .references-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.8rem !important;
+        page-break-inside: avoid !important;
+      }
+      .reference-card {
+        background: transparent !important;
+        border: 1px solid #ddd !important;
+        padding: 0.6rem !important;
+        border-radius: 4px !important;
+        page-break-inside: avoid !important;
+      }
+      .ref-name {
+        font-size: 8.5pt !important;
+        color: #111 !important;
+      }
+      .ref-relation {
+        font-size: 7.5pt !important;
+        color: #444 !important;
+      }
+      .ref-phone {
+        font-size: 7.8pt !important;
+        color: #222 !important;
+      }
+      
+      .sidebar-item {
+        padding-left: 0 !important;
+        margin-bottom: 8px !important;
+      }
+      .sidebar-item::before {
+        display: none !important;
+      }
+      .sidebar-item-title {
+        font-size: 8.5pt !important;
+        color: #111 !important;
+      }
+      .sidebar-item-desc {
+        font-size: 8pt !important;
+        color: #222 !important;
+      }
+      .sidebar-item-meta {
+        font-size: 7.5pt !important;
+        color: #444 !important;
+      }
+
+      /* Page margins */
+      @page {
+        size: letter;
+        margin: 15mm 15mm 15mm 15mm;
+      }
+
+      h2, h3, h4, .section-title {
+        page-break-after: avoid !important;
+      }
+      
+      .print-page-break {
+        page-break-before: always !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating particles decorative canvas (only on screen) -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="cv-container">
+    
+    <!-- Action Bar (Screen Only) -->
+    <div class="actions-bar">
+      <a href="0KevinB.github.io/index.html" class="back-btn">
+        <i class="fas fa-chevron-left"></i> back to portfolio
+      </a>
+      <button onclick="window.print()" class="print-btn">
+        <i class="fas fa-print"></i> Print CV / Save PDF
+      </button>
+    </div>
+
+    <!-- CV Paper Document -->
+    <div class="cv-paper">
+      
+      <!-- Profile Header -->
+      <header class="cv-header">
+        <div class="header-left">
+          <h1>Kevin Barrazueta</h1>
+          <div class="title">Software Developer</div>
+        </div>
+        <div class="header-right">
+          <div><i class="fas fa-map-marker-alt"></i> Loja, Ecuador 🇪🇨</div>
+          <div><i class="fas fa-phone-alt"></i> 0962645019</div>
+          <div><i class="fas fa-envelope"></i> <a href="mailto:kevin010803abq@gmail.com">kevin010803abq@gmail.com</a></div>
+          <div><i class="fab fa-linkedin"></i> <a href="https://linkedin.com/in/kevin-barrazueta" target="_blank">linkedin.com/in/kevin-barrazueta</a></div>
+          <div><i class="fab fa-github"></i> <a href="https://github.com/0KevinB" target="_blank">github.com/0KevinB</a></div>
+          <div><i class="fas fa-globe"></i> <a href="https://0kevinb.github.io" target="_blank">0kevinb.github.io</a></div>
+        </div>
+      </header>
+
+      <!-- Main Layout Columns -->
+      <div class="cv-grid">
+        
+        <!-- Sidebar Column -->
+        <aside class="cv-sidebar">
+          
+          <!-- Stacks -->
+          <div>
+            <h2 class="section-title">Technologies</h2>
+            
+            <div class="skill-cat">
+              <div class="skill-cat-name">Frontend</div>
+              <div class="skill-pills">
+                <span class="skill-pill">React</span>
+                <span class="skill-pill">Angular</span>
+                <span class="skill-pill">Next.js</span>
+                <span class="skill-pill">React Native</span>
+                <span class="skill-pill">Flutter</span>
+                <span class="skill-pill">HTML / CSS</span>
+                <span class="skill-pill">Tailwind CSS</span>
+                <span class="skill-pill">TypeScript</span>
+                <span class="skill-pill">JavaScript</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <div class="skill-cat-name">Backend</div>
+              <div class="skill-pills">
+                <span class="skill-pill">Node.js</span>
+                <span class="skill-pill">Java</span>
+                <span class="skill-pill">Python</span>
+                <span class="skill-pill">REST APIs</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <div class="skill-cat-name">Databases</div>
+              <div class="skill-pills">
+                <span class="skill-pill">Firebase</span>
+                <span class="skill-pill">Supabase</span>
+                <span class="skill-pill">PostgreSQL</span>
+                <span class="skill-pill">MySQL</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <div class="skill-cat-name">Tools</div>
+              <div class="skill-pills">
+                <span class="skill-pill">Git / GitHub</span>
+                <span class="skill-pill">CI/CD</span>
+                <span class="skill-pill">Docker</span>
+                <span class="skill-pill">Expo</span>
+                <span class="skill-pill">Android Studio</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <div class="skill-cat-name">Design & Management</div>
+              <div class="skill-pills">
+                <span class="skill-pill">Figma</span>
+                <span class="skill-pill">ClickUp</span>
+                <span class="skill-pill">Trello</span>
+                <span class="skill-pill">Notion</span>
+              </div>
+            </div>
+
+            <div class="skill-cat">
+              <div class="skill-cat-name">AI & Productivity</div>
+              <div class="skill-pills">
+                <span class="skill-pill">GitHub Copilot</span>
+                <span class="skill-pill">Claude</span>
+                <span class="skill-pill">ChatGPT</span>
+                <span class="skill-pill">Cursor</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Languages -->
+          <div>
+            <h2 class="section-title">Languages</h2>
+            <div class="sidebar-list">
+              <div class="sidebar-item">
+                <div class="sidebar-item-title">Spanish</div>
+                <div class="sidebar-item-desc">Native Speaker</div>
+              </div>
+              <div class="sidebar-item">
+                <div class="sidebar-item-title">English</div>
+                <div class="sidebar-item-desc">Conversational (Basic-Intermediate)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div>
+            <h2 class="section-title">Education</h2>
+            <div class="sidebar-list">
+              <div class="sidebar-item">
+                <div class="sidebar-item-title">B.S. in Computer Science</div>
+                <div class="sidebar-item-desc">Universidad Técnica Particular de Loja (UTPL)</div>
+                <div class="sidebar-item-meta">2021 – 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications -->
+          <div>
+            <h2 class="section-title">Certifications</h2>
+            <div class="sidebar-list">
+              <div class="sidebar-item">
+                <div class="sidebar-item-title">CCNA: Introduction to Networks</div>
+                <div class="sidebar-item-desc">Cisco Networking Academy</div>
+                <div class="sidebar-item-meta">Issued 2024</div>
+              </div>
+              <div class="sidebar-item">
+                <div class="sidebar-item-title">CCNA: Switching & Wireless Essentials</div>
+                <div class="sidebar-item-desc">Cisco Networking Academy</div>
+                <div class="sidebar-item-meta">Issued 2025</div>
+              </div>
+              <div class="sidebar-item">
+                <div class="sidebar-item-title">Bootcamp Full Stack</div>
+                <div class="sidebar-item-desc">Skilt Academy</div>
+                <div class="sidebar-item-meta">Issued 2025</div>
+              </div>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- Main Content Column -->
+        <main class="cv-main">
+          
+          <!-- Summary -->
+          <div>
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="summary-text">
+              Computer Science Engineer with hands-on experience in full-stack web and mobile development. Specialized in React, Angular, React Native, Flutter, Next.js, Firebase, and Supabase. Built complete products across healthcare, education, transit, and entertainment sectors, managing everything from UI/UX design to final production deployment. Focused on delivering real-world impact with clean code, solid engineering practices, and collaborative teamwork.
+            </p>
+          </div>
+
+          <!-- Experience -->
+          <div>
+            <h2 class="section-title">Professional Experience</h2>
+            
+            <div class="timeline-item">
+              <div class="timeline-header">
+                <h3>Full Stack Developer</h3>
+                <span class="period">Sep 2025 – May 2026</span>
+              </div>
+              <div class="timeline-subheader">
+                <span class="company">🏥 MediHelp</span>
+                <span class="reference">Ref: Juan Carlos Cabrera · 0983074595</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Developed the cross-platform web and mobile application for doctors and patients using Next.js, React Native, and Supabase.</li>
+                <li>Implemented electronic health record (EHR) management, appointment scheduling, automated medication reminders, and medical exam uploads.</li>
+                <li>Built a real-time messaging channel between patients and doctors utilizing Supabase Realtime subscriptions.</li>
+                <li>Engineered the comprehensive medical administration dashboard: scheduling, patient records, and consultation workflows.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-header">
+                <h3>Full Stack Developer</h3>
+                <span class="period">Jan 2025</span>
+              </div>
+              <div class="timeline-subheader">
+                <span class="company">🎮 Game-Based Learning Platform</span>
+                <span class="reference">Ref: Stalyn Tapia · 0998336434</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Developed an educational web application featuring interactive mini-games (crossword puzzles, quizzes, educational videos) about Ancient History.</li>
+                <li>Designed the entire gamified experience: level progression maps, scoring systems, and immediate interactive feedback.</li>
+                <li>Stack: Next.js, JavaScript, and Firebase.</li>
+              </ul>
+            </div>
+
+            <!-- Page break perfectly positioned in print mode to split document gracefully -->
+            <div class="print-page-break"></div>
+
+            <div class="timeline-item">
+              <div class="timeline-header">
+                <h3>Full Stack Developer</h3>
+                <span class="period">Sep 2024 – Oct 2024</span>
+              </div>
+              <div class="timeline-subheader">
+                <span class="company">💚 QR Refugio</span>
+                <span class="reference">Ref: Stalyn Tapia · 0998336434</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Built a mobile emotional support platform for teenagers using React Native and Firebase.</li>
+                <li>Enabled student registration, real-time case tracking, and course management features.</li>
+                <li>Engineered interactive educational resource uploads (articles, readings, files).</li>
+              </ul>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-header">
+                <h3>Customer Support Associate</h3>
+                <span class="period">Mar 2023 – Aug 2023</span>
+              </div>
+              <div class="timeline-subheader">
+                <span class="company">🏪 DK Store</span>
+                <span class="reference">Ref: Jimmy Jumbo · 0985362663</span>
+              </div>
+              <ul class="timeline-bullets">
+                <li>Provided direct customer support and service administration in a fast-paced retail commercial environment.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Featured Projects -->
+          <div>
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="project-card">
+              <div class="project-title-row">
+                <h4>MediHelp — Complete Healthcare System</h4>
+                <span class="proj-year">2025 – 2026</span>
+              </div>
+              <div class="project-tech">Next.js | React Native | Supabase | TypeScript</div>
+              <p class="project-desc">
+                An end-to-end web and mobile system for patients and doctors featuring:
+              </p>
+              <ul class="project-bullets">
+                <li>Electronic medical records, appointments, prescription reminders, exams, and real-time chat.</li>
+                <li>Fully integrated medical module with calendar synchronization, patient records, and consultation tools on mobile and web.</li>
+                <li>Full-stack architecture with secure role-based Auth, cloud file storage, and automated push notifications.</li>
+              </ul>
+            </div>
+
+            <div class="project-card">
+              <div class="project-title-row">
+                <h4>TransiLoja — Public Transit Mobile Application</h4>
+                <span class="proj-year">2024 – 2025</span>
+              </div>
+              <div class="project-tech">React Native | Expo EAS | Cloud Firestore | GTFS | Next.js</div>
+              <p class="project-desc">
+                A mobile application prototype for the urban bus system in Loja (graduation thesis project) featuring:
+              </p>
+              <ul class="project-bullets">
+                <li>Integrated GTFS transit standards, real-time GPS tracking, and custom interfaces for passengers and operators.</li>
+                <li>Conducted rigorous usability tests with real users and compiled academic reports for thesis validation.</li>
+              </ul>
+            </div>
+
+            <div class="project-card">
+              <div class="project-title-row">
+                <h4>New Wave Forex — Registration Automation</h4>
+                <span class="proj-year">Jan 2024 – Feb 2024</span>
+              </div>
+              <div class="project-tech">Next.js | Firebase | TypeScript</div>
+              <p class="project-desc">
+                University project (UTPL) automating the onboarding pipeline for new students entering the New Wave Forex educational platform. Developed frontend and backend systems, including custom validation rules, automatic email notifications, and an administrative dashboard.
+              </p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-title-row">
+                <h4>LatinoXYZ — Social Network for Artists</h4>
+                <span class="proj-year">2024 – 2025</span>
+              </div>
+              <div class="project-tech">Next.js | Firebase | TypeScript | Tailwind CSS</div>
+              <p class="project-desc">
+                A social media and e-commerce platform for Latin American artists to showcase, promote, and sell their work. Developed dynamic media feeds, custom artist profiles, posting workflows, and a shopping cart module.
+              </p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-title-row">
+                <h4>Mobile App with Flutter</h4>
+                <span class="proj-year">2024 – 2025</span>
+              </div>
+              <div class="project-tech">Flutter | Dart | Firebase</div>
+              <p class="project-desc">
+                Cross-platform mobile application development (Android & iOS) utilizing Flutter and Dart. Integrated Firebase for authentication, real-time database syncing, and cloud asset storage.
+              </p>
+            </div>
+
+            <div class="project-card">
+              <div class="project-title-row">
+                <h4>NyxTeam — Collaborative Platform</h4>
+                <span class="proj-year">2024</span>
+              </div>
+              <div class="project-tech">Next.js | Firebase | Tailwind CSS</div>
+              <p class="project-desc">
+                A project management and collaboration platform tailored for startup teams and entrepreneurs. Led system architecture design and spearheaded frontend engineering of the product.
+              </p>
+            </div>
+          </div>
+
+          <!-- References -->
+          <div>
+            <h2 class="section-title">References</h2>
+            <div class="references-grid">
+              
+              <div class="reference-card">
+                <div class="ref-name">Juan Carlos Cabrera</div>
+                <div class="ref-relation">MediHelp · Project Supervisor</div>
+                <div class="ref-phone"><i class="fas fa-phone-alt"></i> 0983074595</div>
+              </div>
+
+              <div class="reference-card">
+                <div class="ref-name">Stalyn Tapia</div>
+                <div class="ref-relation">QR Refugio · Project Supervisor</div>
+                <div class="ref-phone"><i class="fas fa-phone-alt"></i> 0998336434</div>
+              </div>
+
+              <div class="reference-card">
+                <div class="ref-name">Jimmy Jumbo</div>
+                <div class="ref-relation">DK Store · Direct Supervisor</div>
+                <div class="ref-phone"><i class="fas fa-phone-alt"></i> 0985362663</div>
+              </div>
+
+              <div class="reference-card">
+                <div class="ref-name">Milton Guevara</div>
+                <div class="ref-relation">National Police · ISSPOL Director</div>
+                <div class="ref-phone"><i class="fas fa-phone-alt"></i> 0990048385</div>
+              </div>
+
+              <div class="reference-card">
+                <div class="ref-name">Marco Rojas</div>
+                <div class="ref-relation">Banco Pichincha · Advisor</div>
+                <div class="ref-phone"><i class="fas fa-phone-alt"></i> 0983355674</div>
+              </div>
+
+              <div class="reference-card">
+                <div class="ref-name">Jhonny Toledo</div>
+                <div class="ref-relation">Independent Architect</div>
+                <div class="ref-phone"><i class="fas fa-phone-alt"></i> 0993523152</div>
+              </div>
+
+            </div>
+          </div>
+
+        </main>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>
